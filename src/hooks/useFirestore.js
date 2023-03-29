@@ -26,6 +26,13 @@ const firestoreReducer = (state, action) => {
         success: true,
         error: null,
       };
+    case "UPDATED_DOCUMENT":
+      return {
+        isPending: false,
+        document: action.payload,
+        success: true,
+        error: null,
+      };
     case "ERROR":
       return {
         ...state,
@@ -56,8 +63,8 @@ export const useFirestore = (collection) => {
   const addDocument = async (doc) => {
     dispatch({ type: "IS_PENDING" });
     try {
-        const createdAt = timestamp.fromDate(new Date())
-      const addedDocument = await ref.add({...doc, createdAt});
+      const createdAt = timestamp.fromDate(new Date());
+      const addedDocument = await ref.add({ ...doc, createdAt });
       dispatchIfNotCanceled({ type: "ADDED_DOCUMENT", payload: addedDocument });
     } catch (err) {
       dispatchIfNotCanceled({ type: "ERROR", payload: err.message });
@@ -66,12 +73,37 @@ export const useFirestore = (collection) => {
 
   //   delete a doc
   const deleteDocument = async (docId) => {
-    dispatch({ type: "IS_PENDING"})
-    try{
-      const deletedDocument = await ref.doc(docId).delete()
-      dispatchIfNotCanceled({ type: "DELETED_DOCUMENT", payload: deletedDocument})
-    }catch(err){
-      dispatchIfNotCanceled({ type: "ERROR", payload: "Could not delete document" });
+    dispatch({ type: "IS_PENDING" });
+    try {
+      const deletedDocument = await ref.doc(docId).delete();
+      dispatchIfNotCanceled({
+        type: "DELETED_DOCUMENT",
+        payload: deletedDocument,
+      });
+    } catch (err) {
+      dispatchIfNotCanceled({
+        type: "ERROR",
+        payload: "Could not delete document",
+      });
+    }
+  };
+
+  // update a doc
+  const updateDocument = async (docId, updates) => {
+    dispatch({ type: "IS_PENDING" });
+    try {
+      const updatedDocument = await ref.doc(docId).update(updates);
+      dispatchIfNotCanceled({
+        type: "UPDATED_DOCUMENT",
+        payload: updatedDocument,
+      });
+      return updatedDocument;
+    } catch (err) {
+      dispatchIfNotCanceled({
+        type: "ERROR",
+        payload: err,
+      });
+      return null;
     }
   };
 
@@ -80,5 +112,5 @@ export const useFirestore = (collection) => {
     return () => setIsCanceled(true);
   }, []);
 
-  return { addDocument, deleteDocument, response };
+  return { addDocument, deleteDocument, updateDocument, response };
 };
