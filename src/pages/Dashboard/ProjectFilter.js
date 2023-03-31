@@ -5,6 +5,7 @@ const filterList = [
   "design",
   "marketing",
   "sales",
+  "completed",
 ];
 
 export default function ProjectFilter({ currentFilter, changeFilter}) {

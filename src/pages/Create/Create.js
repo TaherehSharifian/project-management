@@ -75,6 +75,7 @@ export default function Create() {
       assignedUsersList: assignedUsersList,
       comment: [],
       createdBy: createdBy,
+      complete: false,
     };
 
     await addDocument(project);

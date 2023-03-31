@@ -12,6 +12,10 @@
     text-decoration: none;
     color: inherit;
   }
+  .project-list .completed{
+    color: #00ff00;
+    font-weight: lighter;
+  }
   .project-list h4 {
     font-size: 0.9em;
     color: var(--heading-color);

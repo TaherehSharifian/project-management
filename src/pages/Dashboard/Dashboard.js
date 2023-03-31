@@ -17,7 +17,8 @@ export default function Dashboard() {
   };
 
   const filteredProjects = documents
-    ? documents.filter((document) => {
+    ? documents.sort((a, b) => a.complete - b.complete) && // sorted documents from false to true
+      documents.filter((document) => {
         switch (currentFilter) {
           case "all":
             return true;
@@ -31,6 +32,9 @@ export default function Dashboard() {
             });
             return assignedToMe;
 
+          case "completed":
+            return document.complete
+            
           case "development":
           case "design":
           case "sales":
