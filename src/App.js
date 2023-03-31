@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Project from "./pages/Project/Project";
+import UserProjects from "./pages/UserProjects/UserProjects";
 
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -30,6 +31,10 @@ function App() {
               </Route>
               <Route path="/create">
                 {user && <Create />}
+                {!user && <Redirect to="/login" />}
+              </Route>
+              <Route path="/my-projects">
+                {user && <UserProjects />}
                 {!user && <Redirect to="/login" />}
               </Route>
               <Route path="/login">

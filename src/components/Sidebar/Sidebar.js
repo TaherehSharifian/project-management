@@ -27,6 +27,12 @@ export default function Sidebar() {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/my-projects">
+                <img src={Dashboard} alt="dashboard-icon" />
+                <span>My Projects</span>
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/create">
                 <img src={AddIcon} alt="add-icon" />
                 <span>Create Project</span>

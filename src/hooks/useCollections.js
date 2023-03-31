@@ -5,17 +5,17 @@ export const useCollections = (collection, _query, _orderBy) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
 
-  const query = useRef(_query).current
-  const orderBy = useRef(_orderBy).current
+  const query = useRef(_query).current;
+  const orderBy = useRef(_orderBy).current;
 
   useEffect(() => {
     let ref = projectFirestore.collection(collection);
 
-    if (query){
-      ref = ref.where(...query)
+    if (query) {
+      ref = ref.where(...query);
     }
-    if(orderBy){
-      ref = ref.orderBy(...orderBy)
+    if (orderBy) {
+      ref = ref.orderBy(...orderBy);
     }
 
     const unsub = ref.onSnapshot(
@@ -26,6 +26,7 @@ export const useCollections = (collection, _query, _orderBy) => {
         });
 
         // update states
+        results.sort((a, b) => a.complete - b.complete); // sorted documents from false to true
         setDocuments(results);
         setError(null);
       },
