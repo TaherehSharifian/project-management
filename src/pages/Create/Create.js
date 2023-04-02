@@ -14,6 +14,7 @@ const categories = [
   { value: "design", label: "Design" },
   { value: "sales", label: "Sales" },
   { value: "marketing", label: "Marketing" },
+  { value: "game", label: "Game" },
 ];
 
 export default function Create() {

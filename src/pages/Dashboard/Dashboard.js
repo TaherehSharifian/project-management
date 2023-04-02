@@ -51,6 +51,7 @@ export default function Dashboard() {
       <h2 className="page-title">Project List</h2>
 
       {error && <div className="error">{error.message}</div>}
+
       {documents && (
         <ProjectFilter
           currentFilter={currentFilter}

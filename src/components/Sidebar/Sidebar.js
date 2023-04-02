@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import Dashboard from "../../assets/dashboard_icon.svg";
 import AddIcon from "../../assets/add_icon.svg";
+import MyProjects from '../../assets/bookmark.svg'
 
 import Avatar from "../Avatar/Avatar";
 

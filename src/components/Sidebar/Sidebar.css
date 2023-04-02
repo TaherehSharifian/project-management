@@ -4,11 +4,11 @@
     background: var(--primary-color);
     min-height: 100vh;
     box-sizing: border-box;
-    position: relative;
+    position: static;
     color: #fff;
+    transition: all 0.2s ease;
   }
   .sidebar-content {
-    position: fixed;
     width: inherit;
   }
   .sidebar .user {
@@ -52,4 +52,18 @@
     width: 70px;
     height: 70px;
     border: 3px solid #fff;
+  }
+
+  @media (max-width: 1000px){
+    .sidebar{
+      width: 100px;
+    min-width: 100px;
+    }
+    .sidebar .links a span,
+    .sidebar .user p{
+      display: none;
+    }
+    .sidebar .user{
+      padding-left: 10px;
+    }
   }

@@ -12,11 +12,10 @@ export default function UserProjects() {
     user.uid,
   ]);
 
-  console.log(documents);
 
   return (
     <div>
-      <h2 className="page-title">{user.displayName} Projects </h2>
+      <h2 className="page-title">{user.displayName} Projects ({documents && documents.length})</h2>
       {documents && <ProjectList projects={documents} />}
     </div>
   );

@@ -31,7 +31,6 @@ export const useCollections = (collection, _query, _orderBy) => {
         setError(null);
       },
       (error) => {
-        console.log(error);
         setError("Could not fetch documents");
       }
     );
